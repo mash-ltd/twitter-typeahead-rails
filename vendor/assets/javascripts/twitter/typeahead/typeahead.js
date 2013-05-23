@@ -384,6 +384,7 @@
             this.minLength = o.minLength || 1;
             this.header = o.header;
             this.footer = o.footer;
+            this.noresultsHtml = o.noresultsHtml;  
             this.valueKey = o.valueKey || "value";
             this.template = compileTemplate(o.template, o.engine, this.valueKey);
             this.local = o.local;
@@ -800,13 +801,19 @@
                 var $suggestion = this._getSuggestions().first();
                 return $suggestion.length > 0 ? extractSuggestion($suggestion) : null;
             },
-            renderSuggestions: function(dataset, suggestions) {
+            renderSuggestions: function(dataset, suggestions, query) {
                 var datasetClassName = "tt-dataset-" + dataset.name, wrapper = '<div class="tt-suggestion">%body</div>', compiledHtml, $suggestionsList, $dataset = this.$menu.find("." + datasetClassName), elBuilder, fragment, $el;
                 if ($dataset.length === 0) {
                     $suggestionsList = $(html.suggestionsList).css(css.suggestionsList);
                     $dataset = $("<div></div>").addClass(datasetClassName).append(dataset.header).append($suggestionsList).append(dataset.footer).appendTo(this.$menu);
                 }
-                if (suggestions.length > 0) {
+                // noresultHtml specified and there are no results (but has an input query val)
+                if (suggestions.length == 0 && query && dataset.noresultsHtml != null){
+                    this.isEmpty = true;
+                    this.isOpen && this._show();
+                    $dataset.show().find(".tt-suggestions").html(dataset.noresultsHtml);
+                 }
+                else if (suggestions.length > 0) {
                     this.isEmpty = false;
                     this.isOpen && this._show();
                     elBuilder = document.createElement("div");
