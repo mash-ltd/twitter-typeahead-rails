@@ -805,12 +805,7 @@
                 var datasetClassName = "tt-dataset-" + dataset.name, wrapper = '<div class="tt-suggestion">%body</div>', compiledHtml, $suggestionsList, $dataset = this.$menu.find("." + datasetClassName), elBuilder, fragment, $el;
                 if ($dataset.length === 0) {
                     $suggestionsList = $(html.suggestionsList).css(css.suggestionsList);
-                    if (suggestions.length == 0 && query && dataset.noresultsHtml != null){
-                        $dataset = $("<div></div>").addClass(datasetClassName).append(dataset.header).append($suggestionsList).appendTo(this.$menu);
-                    }
-                    else{
-                        $dataset = $("<div></div>").addClass(datasetClassName).append(dataset.header).append($suggestionsList).append(dataset.footer).appendTo(this.$menu);
-                    }
+                    $dataset = $("<div></div>").addClass(datasetClassName).append(dataset.header).append($suggestionsList).append(dataset.footer).appendTo(this.$menu);
                 }
                 // noresultHtml specified and there are no results (but has an input query val)
                 if (suggestions.length == 0 && query && dataset.noresultsHtml != null){
