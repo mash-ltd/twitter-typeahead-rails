@@ -811,8 +811,7 @@
                 if (suggestions.length == 0 && query && dataset.noresultsHtml != null){
                     this.isEmpty = true;
                     this.isOpen && this._show();
-                    $dataset.show().find(".tt-suggestions").html(dataset.noresultsHtml);
-                    $dataset.remove(".search-footer-links");
+                    $dataset.show();
                  }
                 else if (suggestions.length > 0) {
                     this.isEmpty = false;
