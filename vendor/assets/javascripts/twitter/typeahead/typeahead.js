@@ -812,6 +812,7 @@
                     this.isEmpty = true;
                     this.isOpen && this._show();
                     $dataset.show().find(".tt-suggestions").html(dataset.noresultsHtml);
+                    $dataset.remove(".search-footer-links");
                  }
                 else if (suggestions.length > 0) {
                     this.isEmpty = false;
