@@ -305,7 +305,12 @@
                 cache: o.cache,
                 timeout: o.timeout,
                 dataType: o.dataType || "json",
-                beforeSend: o.beforeSend
+                beforeSend: function(){
+                    $('body').addClass('search-loading');
+                },
+                complete: function(){
+                    $('body').removeClass('search-loading');
+                }
             };
             this._get = (/^throttle$/i.test(o.rateLimitFn) ? utils.throttle : utils.debounce)(this._get, o.rateLimitWait || 300);
         }
