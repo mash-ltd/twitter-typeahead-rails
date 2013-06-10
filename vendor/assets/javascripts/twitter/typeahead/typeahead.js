@@ -748,7 +748,7 @@
                 this.trigger("cursorMoved", extractSuggestion($underCursor));
             },
             _getSuggestions: function() {
-                return this.$menu.find(".tt-suggestions > .tt-suggestion");
+                return this.$menu.find(".tt-suggestions .tt-suggestion");
             },
             destroy: function() {
                 this.$menu.off(".tt");
@@ -766,7 +766,7 @@
                 if (this.isOpen) {
                     this.isOpen = false;
                     this._hide();
-                    this.$menu.find(".tt-suggestions > .tt-suggestion").removeClass("tt-is-under-cursor");
+                    this.$menu.find(".tt-suggestions .tt-suggestion").removeClass("tt-is-under-cursor");
                     this.trigger("closed");
                 }
             },
